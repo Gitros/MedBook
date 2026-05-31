@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('doctor_specialization', function (Blueprint $table) {
+        Schema::create('patients', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('pesel', 11)->unique();
+            $table->string('phone', 20);
+            $table->date('birth_date');
+            $table->text('address')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('doctor_specialization');
+        Schema::dropIfExists('patients');
     }
 };
