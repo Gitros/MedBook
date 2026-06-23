@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Appointment extends Model
 {
+    use HasFactory, SoftDeletes;
+
     protected $fillable = ['doctor_id', 'patient_id', 'specialization_id', 'appointment_date', 'status', 'reason', 'notes'];
 
     protected $casts = [
